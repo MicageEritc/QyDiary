@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小公主的成长足迹</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f7f4;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+        
+        .site-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 300;
+            color: #e76f51;
+            margin-bottom: 10px;
+        }
+        
+        .site-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #e76f51;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .month-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            margin-bottom: 30px;
+        }
+        
+        .month-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid #e76f51;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #fff;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #fff;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #fff;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #fff transparent transparent;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .month-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        .month-date {
+            font-weight: 500;
+            color: #e76f51;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .photo-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .milestone {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #f9f3f2;
+            border-left: 3px solid #e76f51;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .milestone-title {
+            font-weight: 500;
+            color: #e76f51;
+            margin-bottom: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            background-color: #fff;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .footer-text {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        .memory-note {
+            font-style: italic;
+            color: #666;
+            margin-top: 15px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .month-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .month-container::before {
+                left: 60px;
+                border: medium solid #fff;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent #fff transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 22px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">小公主的成长足迹</h1>
+            <p class="site-subtitle">记录每一个珍贵的成长瞬间 - 从出生到现在</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="timeline">
+            <!-- 第一个月 -->
+            <div class="month-container left">
+                <div class="month-content">
+                    <h2 class="month-date">第一个月 - 2024年3月</h2>
+                    <p>欢迎来到这个世界，我的小公主！这是你生命的起点，每一天都充满了新的奇迹。</p>
+                    
+                    <div class="photo-gallery">
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="第一周照片" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="第二周照片" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="第三周照片" />
+                        </div>
+                    </div>
+                    
+                    <div class="milestone">
+                        <h3 class="milestone-title">本月里程碑</h3>
+                        <p>- 第一次睁开眼睛</p>
+                        <p>- 会对着声音转头</p>
+                        <p>- 第一次微笑</p>
+                    </div>
+                    
+                    <p class="memory-note">这个月，你最喜欢听我唱的摇篮曲，每次都能让你安静下来。</p>
+                </div>
+            </div>
+            
+            <!-- 第二个月 -->
+            <div class="month-container right">
+                <div class="month-content">
+                    <h2 class="month-date">第二个月 - 2024年4月</h2>
+                    <p>小公主的每一天都在成长，你的眼睛开始追随我们的身影，小手也开始有意识地抓握。</p>
+                    
+                    <div class="photo-gallery">
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="抓握玩具" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="睡觉时的微笑" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="和爸爸的合影" />
+                        </div>
+                    </div>
+                    
+                    <div class="milestone">
+                        <h3 class="milestone-title">本月里程碑</h3>
+                        <p>- 能够抬头45度</p>
+                        <p>- 开始咯咯笑</p>
+                        <p>- 对明亮的颜色表现出兴趣</p>
+                    </div>
+                    
+                    <p class="memory-note">每次听到我的声音，你都会转头寻找，这是我们之间最美好的连接。</p>
+                </div>
+            </div>
+            
+            <!-- 第三个月 -->
+            <div class="month-container left">
+                <div class="month-content">
+                    <h2 class="month-date">第三个月 - 2024年5月</h2>
+                    <p>三个月的你变得更加活泼，开始发出各种可爱的声音，仿佛在和我们交流。</p>
+                    
+                    <div class="photo-gallery">
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="趴着抬头" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="玩健身架" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="第一次去公园" />
+                        </div>
+                    </div>
+                    
+                    <div class="milestone">
+                        <h3 class="milestone-title">本月里程碑</h3>
+                        <p>- 能够扶着坐起来</p>
+                        <p>- 开始发出"啊哇"等声音</p>
+                        <p>- 喜欢趴着玩耍，能抬头90度</p>
+                    </div>
+                    
+                    <p class="memory-note">你最爱的玩具是那个会发光的小鸭子，每次看到它都会兴奋地挥舞小手。</p>
+                </div>
+            </div>
+            
+            <!-- 第四个月 -->
+            <div class="month-container right">
+                <div class="month-content">
+                    <h2 class="month-date">第四个月 - 2024年6月</h2>
+                    <p>四个月的你充满了好奇心，对周围的一切都充满探索欲望，小手会有意识地抓取东西。</p>
+                    
+                    <div class="photo-gallery">
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="抓握玩具" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="第一次吃辅食" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="和妈妈玩耍" />
+                        </div>
+                    </div>
+                    
+                    <div class="milestone">
+                        <h3 class="milestone-title">本月里程碑</h3>
+                        <p>- 能够从仰卧翻身到侧卧</p>
+                        <p>- 开始尝试简单的辅食</p>
+                        <p>- 对镜子中的自己产生兴趣</p>
+                    </div>
+                    
+                    <p class="memory-note">你最喜欢的时刻是每天傍晚的亲子互动时间，总是笑得最开心。</p>
+                </div>
+            </div>
+            
+            <!-- 第五个月 -->
+            <div class="month-container left">
+                <div class="month-content">
+                    <h2 class="month-date">第五个月 - 2024年7月</h2>
+                    <p>五个月的你开始尝试更多的声音，能够区分不同的人，看到妈妈爸爸会特别兴奋。</p>
+                    
+                    <div class="photo-gallery">
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="玩水" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="笑容特写" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="和爷爷奶奶的合影" />
+                        </div>
+                    </div>
+                    
+                    <div class="milestone">
+                        <h3 class="milestone-title">本月里程碑</h3>
+                        <p>- 会翻身了</p>
+                        <p>- 尝试坐起来</p>
+                        <p>- 学会啃咬玩具</p>
+                    </div>
+                    
+                    <p class="memory-note">你的性格开始显现，非常坚持，如果想要什么东西，会一直尝试直到成功。</p>
+                </div>
+            </div>
+            
+            <!-- 第六个月 -->
+            <div class="month-container right">
+                <div class="month-content">
+                    <h2 class="month-date">第六个月 - 2024年8月</h2>
+                    <p>六个月的你开始坐得更稳了，会享受阅读绘本的时光，对不同的食物也表现出浓厚的兴趣。</p>
+                    
+                    <div class="photo-gallery">
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="看绘本" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="尝试固体食物" />
+                        </div>
+                        <div class="photo-item">
+                            <img src="/api/placeholder/400/300" alt="独自坐着" />
+                        </div>
+                    </div>
+                    
+                    <div class="milestone">
+                        <h3 class="milestone-title">本月里程碑</h3>
+                        <p>- 能够独自坐稳</p>
+                        <p>- 会发出"妈妈"、"爸爸"的音节</p>
+                        <p>- 开始学习拍手</p>
+                    </div>
+                    
+                    <p class="memory-note">你最喜欢的绘本是《好饿的毛毛虫》，每次都会专注地看完整本书。</p>
+                </div>
+            </div>
+            
+            <!-- 添加更多月份 -->
+            <div class="month-container left">
+                <div class="month-content">
+                    <h2 class="month-date">更多成长记录</h2>
+                    <p>持续更新中...</p>
+                    <p>每一个月，每一天，都是珍贵的回忆。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2024-2025 小公主的成长足迹 - 用爱创造的家庭记忆</p>
+        </div>
+    </footer>
+</body>
+</html>
